@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de idade</title>
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Josefin+Slab:wght@700&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        header{
+            color: white;
+            text-align: center;
+            font-family: 'Fredoka One', cursive;
+            padding-top: 15px;
+            padding-bottom: 50px;
+            font-size: xx-large;
+        }
+
+        :root{
+            --cor-vermelho: rgb(0, 0, 0);
+            --cor-vermelho-claro: rgb(0, 0, 0);
+            --fonte-principal: 'Fredoka One', cursive;
+        }
+
+        body{
+            background-image: linear-gradient(to right, var(--cor-vermelho), var(--cor-vermelho-claro));
+            
+
+        }
+
+        main{
+            
+            margin:  auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            border: 20px  dotted rgb(255, 255, 255);
+            border-radius: 1000px;
+            background-color: rgb(15, 126, 136);
+            width: 50rem;
+            font-family: 'Fredoka One', cursive;
+            
+
+            
+            
+        }
+
+        .imagem img{
+            margin-top: 5%;
+            width: 100%;
+            
+        }
+
+        section.formulario{
+            
+            width: 60%;
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            border: 5px solid black;
+            border-radius: 1000px;
+            background-color: rgb(255, 174, 0);
+
+        }
+
+        section.formulario input[type=number]{
+
+            width: 70px; 
+            height: 35px;       
+            border: none;
+            border-bottom: 1px solid black;
+            margin-top: 5%;    
+        }
+
+        input[type=number]::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+        }
+
+        section.imagem{
+
+            border: 5px solid white;
+            border-radius: 100%;
+            background-color: black;
+            width: 40%;
+            height: 40%;
+        }
+
+        #data{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        
+        }
+
+        #sexo{
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2%;
+            margin: 5%;
+            
+    
+    
+            
+        }
+
+        button{
+            width: 130px;
+            height: 60px;
+            padding: 5px 10px;
+            border-radius: 50px;
+            background-color: rgb(235, 68, 68);
+            color: white;
+            font-weight: bolder;
+            font-size: 20px;
+            
+            
+        }
+
+        #resultado{
+            padding-top: 25px;
+            position: relative;
+            flex-wrap: ;
+            
+            
+        }
+
+        footer{
+
+            color: white;
+            text-align: center;
+            padding-top: 4rem;
+            position: relative;
+            
+        }
+
+        #outro{
+            font-size: smaller;
+        }
+
+        #ano{
+            background-color: white;
+            border-radius: 100px;
+            padding: 5px;
+        }
+
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <header> <h1>Calculadora de idade</h1>
+
+    </header>
+
+    <main> 
+        <section class="formulario"> 
+            <div id="data">
+                <label for="" id="ano" >Ano de nascimento</label>
+                <input type="number" name="" id="datanasc" pattern="\d{4}">
+            </div>
+
+            <div id="sexo">
+
+                <div>
+                    <label for="">Feminino</label>
+                    <input type="radio" name="sexo" id="f">
+   
+                </div>
+
+                <div>
+                 <label for="">Masculino</label>
+                 <input type="radio" name="sexo" id="m">
+
+                </div>
+
+
+                <div>
+                 <label for="">Outro</label>
+                 <input type="radio" name="sexo" id="o">
+                 
+                 
+                    <label for="">(Informe o gênero)</label >
+                    <input type="text" id="outro-genero">
+
+                 </div>
+
+                </div>
+                
+            </div>
+
+            <div>
+                <button id="button">Calcular</button>
+            </div>
+
+            <div id="resultado">A idade aparece aqui</div>
+
+            
+        </section>
+
+        <section class="imagem">
+            <div>
+                <img src=".//19.png" alt="" id="img">
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer> <p>&copy; Gabrielle Cristina Silva</p>
+
+    </footer>
+
+    <script>
+        var dataNasc = document.querySelector('#datanasc');
+        var sexo = document.getElementsByName('sexo')
+        var resultado = document.querySelector('#resultado')
+        var button = document.querySelector('#button')
+        var img = document.querySelector('img')
+        var pattern = /^\d+$/; //Essa é uma expressão regular (ou regex) em JavaScript que corresponde //a um padrão de texto.O padrão começa com o símbolo "^", que indica o início do texto, seguido //por "\d+", que significa "um ou mais dígitos". O "+" é um quantificador que indica que o //elemento anterior (nesse caso, "\d") deve aparecer uma ou mais vezes. Finalmente, o padrão //termina com "$", que indica o final do texto.Em outras palavras, essa regex corresponde a uma //string que contém apenas um ou mais dígitos numéricos (0-9), sem espaços, letras ou outros //caracteres especiais.Por exemplo, essa regex corresponderia às strings "123", "987654321", mas //não correspondem às strings "12 3", "1a2b3c" ou "123abc".
+        
+        var outroGenero = document.getElementById ('outro-genero')
+
+       
+       
+        dataNasc.addEventListener('input', function() {
+        if (!pattern.test(this.value)) {
+        this.value = this.value.replace(/[^0-9]/g, "")} });
+
+        button.addEventListener('click', ()=>{
+            let anoAtual = new Date().getFullYear();
+            
+            let dataNascimento = Number(dataNasc.value) 
+
+            let idade = anoAtual - dataNascimento
+
+            var outroGenero = document.getElementById('outro-genero')
+            
+            let genero = ""
+
+
+            
+
+            if(sexo[0].checked){
+                resultado.innerHTML = `<h3> Mulher com ${idade} anos </h3>`
+                    img.src = './/13.png'
+                    if(idade < 2 ){
+                        resultado.innerHTML = `<h3> Menina com ${idade} ano </h3>`
+                        img.src = './/menina-2.png'
+
+                    } else if(idade < 13 ){
+                        resultado.innerHTML = `<h3> Menina com ${idade} anos </h3>`
+                        img.src = './/menina-12.png'
+
+                    } else if(idade < 18 ){
+                        resultado.innerHTML = `<h3> Moça com ${idade} anos </h3>`
+                        img.src = './/7.png'
+
+                    } else if(idade < 60 ){
+                
+                        img.src = './/13.png'
+                        
+                    } else if (idade < 122 ){
+                        resultado.innerHTML = `<h3> Senhora com ${idade} anos`
+                            img.src = './/17.png'
+
+                     
+                    } else if (idade > 122 ){
+                        resultado.innerHTML = `<h3> Senhora com ${idade} anos`
+                            img.src = './/imagens-idades(1).png'
+
+                    } 
+                                         
+            } else if (sexo[1].checked){
+                resultado.innerHTML = `<h3> Homem com ${idade} anos`
+                    img.src = './/15.png'
+                    if(idade < 2 ){
+                        resultado.innerHTML = `<h3> Menino com ${idade} ano </h3>`
+                        img.src = './/menino-2.png'
+                    } else if(idade < 13 ){
+                        resultado.innerHTML = `<h3> Menino com ${idade} anos </h3>`
+                        img.src = './/menino-12.png'
+
+                    } else if(idade < 18 ){
+                        resultado.innerHTML = `<h3> Rapaz com ${idade} anos </h3>`
+                        img.src = './/8.png'
+
+                    } else if(idade < 60 ){
+                
+                        img.src = './/15.png'
+
+                    } else if (idade < 122){
+                        resultado.innerHTML = `<h3> Senhor com ${idade} anos`
+                        img.src = './/16.png'
+                    
+                    } else if (idade > 122){
+                        resultado.innerHTML = `<h3> Senhor com ${idade} anos`
+                        img.src = './/imagens-idades(1).png'
+                    }
+
+            } else if(sexo[2].checked ) {
+
+                resultado.innerHTML = `Você tem ${idade} anos e é do gênero ${outroGenero.value}`;
+                img.src = './/14.png'
+                if(idade < 2 ){
+                        resultado.innerHTML = ` Criança com ${idade} ano `
+                        img.src = './/menine-2.png'
+                    } else if(idade < 13 ){
+                        resultado.innerHTML = ` Criança com ${idade} anos`
+                        img.src = './/menine-12.png'
+
+                    } else if(idade < 18 ){
+                        resultado.innerHTML = ` Adolescente com ${idade} anos `
+                        img.src = './/9.png'
+
+                    } else if(idade < 60 ){
+                
+                        img.src = './/14.png'
+
+                    } else if (idade < 122){
+                        resultado.innerHTML = ` Você tem ${idade} anos e é do gênero ${outroGenero.value}`;
+                        img.src = './/18.png'
+                    
+                    } else if (idade > 122){
+                        resultado.innerHTML = ` Pessoa com ${idade} anos`
+                        img.src = './/imagens-idades(1).png'
+                    }
+
+
+            }
+        })
+        
+       
+    </script>
+    
+</body>
+
+</html>
